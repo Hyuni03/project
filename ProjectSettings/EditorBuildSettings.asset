@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingsScene.unity
     guid: 2a7533a8f4acf7b42bd2a182d9a2aebc
+  - enabled: 1
+    path: Assets/Scenes/Prolog/PrologueTemplate.unity
+    guid: ba28ab864bb9aa044a1a3950ac38fd24
   m_configObjects: {}
