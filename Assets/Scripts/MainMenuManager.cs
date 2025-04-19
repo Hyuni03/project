@@ -50,11 +50,19 @@ public class MainMenuManager : MonoBehaviour
     public void NoQuitGame()
     {
         quitPopup.SetActive(false);  // 팝업 비활성화 (숨기기)
+        
     }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     // "나가기" 버튼을 클릭하면 메인 메뉴로 이동
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainScene"); // 메인 화면으로 이동
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
