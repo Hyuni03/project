@@ -4,13 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueLine
 {
-    public List<string> characterNames;       // 화면에 등장하는 캐릭터들
-    public List<Sprite> characterSprites;     // 등장 캐릭터 이미지
+    public List<string> characterNames = new List<string>();
+    public List<Sprite> characterSprites = new List<Sprite>();
     public Sprite backgroundSprite;
     public string dialogueText;
-
-    public string speakingCharacterName;      // 이번 대사에서 말하는 캐릭터 이름
-
-    public List<string> choices;
-    public List<int> nextDialogueIndexes;
+    public List<string> choices = new List<string>();
+    public List<int> nextDialogueIndexes = new List<int>();
+    public string speakerName;
 }

@@ -14,32 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lines:
   - characterNames:
-    - "\uD50C\uB808\uC774\uC5B4"
+    - "\uC2E0\uC9F1\uAD6C"
     characterSprites:
     - {fileID: 21300000, guid: d60ec56a3b97faf4fa4dde2d44272bc9, type: 3}
     backgroundSprite: {fileID: 21300000, guid: e73be5849ace87443ac3c91ef258cf20, type: 3}
-    dialogueText: "\uC73C..\uC65C \uC774\uB807\uAC8C \uC18C\uB780\uC2A4\uB7FD\uC9C0??"
-    speakingCharacterName: 
+    dialogueText: "\uB098\uB294\uC57C \uD241\uD241\uC774"
     choices: []
-    nextDialogueIndexes: 00000000
+    nextDialogueIndexes: 
+    speakerName: "\uC2E0\uC9F1\uAD6C"
   - characterNames:
-    - "\uD788\uB85C\uC778"
+    - "\uC720\uB9AC"
+    - "\uC218\uC9C0"
     characterSprites:
     - {fileID: 21300000, guid: d60ec56a3b97faf4fa4dde2d44272bc9, type: 3}
     - {fileID: 21300000, guid: fca84b205d014ee468dcd157109f2f62, type: 3}
     backgroundSprite: {fileID: 21300000, guid: e73be5849ace87443ac3c91ef258cf20, type: 3}
-    dialogueText: "\uC548\uB155"
-    speakingCharacterName: 1
+    dialogueText: "\uC9F1\uAD6C \uBA4D\uCCAD\uC774"
     choices: []
-    nextDialogueIndexes: 00000000
+    nextDialogueIndexes: 
+    speakerName: "\uC720\uB9AC"
   - characterNames:
-    - "\uD788\uB85C\uC778"
-    - "\uD788\uB85C\uC778"
+    - "\uC218\uC9C0"
+    - "\uC720\uB9AC"
     characterSprites:
-    - {fileID: 21300000, guid: fca84b205d014ee468dcd157109f2f62, type: 3}
     - {fileID: 21300000, guid: d60ec56a3b97faf4fa4dde2d44272bc9, type: 3}
+    - {fileID: 21300000, guid: fca84b205d014ee468dcd157109f2f62, type: 3}
     backgroundSprite: {fileID: 21300000, guid: e73be5849ace87443ac3c91ef258cf20, type: 3}
-    dialogueText: "\uC548\uB155111111"
-    speakingCharacterName: 
+    dialogueText: "\uB098\uB294 \uC9F1\uAD6C\uAC00 \uC88B\uC544"
     choices: []
-    nextDialogueIndexes: 00000000
+    nextDialogueIndexes: 
+    speakerName: "\uC218\uC9C0"

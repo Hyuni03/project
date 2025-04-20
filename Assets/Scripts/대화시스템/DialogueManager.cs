@@ -17,72 +17,111 @@ public class DialogueManager : MonoBehaviour
 
     public Button nextButton;
     public Button prevButton;
-    public List<Button> choiceButtons;  // 선택지 버튼들
-    public List<TMP_Text> choiceTexts;  // 선택지 텍스트들
-    public GameObject choicePanel;      // 선택지 전체 패널
+    public List<Button> choiceButtons;
+    public List<TMP_Text> choiceTexts;
+    public GameObject choicePanel;
 
     private int currentIndex = 0;
+    private string previousSpeaker = "";
 
-    void Start()
+    void Awake()
     {
-        ShowDialogue(currentIndex);
+        Debug.Log("[Awake] 초기화 시작");
+
+        nextButton.onClick.RemoveAllListeners();
+        prevButton.onClick.RemoveAllListeners();
+
         nextButton.onClick.AddListener(ShowNextDialogue);
         prevButton.onClick.AddListener(ShowPreviousDialogue);
     }
 
+    void Start()
+    {
+        ShowDialogue(currentIndex); // 대사는 여기서!
+    }
+
+
     void ShowDialogue(int index)
     {
-        if (dialogueData == null || dialogueData.lines.Count == 0)
+        if (dialogueData == null || dialogueData.lines.Count == 0 || index < 0 || index >= dialogueData.lines.Count)
             return;
 
+        Debug.Log($"[ShowDialogue] index: {index}, total: {dialogueData.lines.Count}");
+
         DialogueLine line = dialogueData.lines[index];
+        Debug.Log($"[DialogueLine] speaker: {line.speakerName}, dialogue: {line.dialogueText}");
+
+        // ✅ 선택지 있는 경우: 대사 진행 멈추고 선택지만 보여줌
+        if (line.choices != null && line.choices.Count > 0)
+        {
+            ShowChoices(line.choices, line.nextDialogueIndexes);
+            return;
+        }
+        else
+        {
+            choicePanel.SetActive(false); // 선택지 없으면 패널 끔
+        }
+
         dialogueText.text = line.dialogueText;
 
-        // 배경
         if (line.backgroundSprite != null)
             backgroundImage.sprite = line.backgroundSprite;
 
-        // 캐릭터 이미지 초기화
-        centerCharacterImage.gameObject.SetActive(false);
         leftCharacterImage.gameObject.SetActive(false);
         rightCharacterImage.gameObject.SetActive(false);
+        centerCharacterImage.gameObject.SetActive(false);
 
-        // 이름은 말하는 캐릭터만 표시
-        nameText.text = line.speakingCharacterName;
-
-        // 캐릭터 두 명 화면에 고정
-        if (line.characterNames.Count == 2)
+        if (line.characterNames.Count == 1)
         {
-            string leftName = line.characterNames[0];
-            string rightName = line.characterNames[1];
+            centerCharacterImage.gameObject.SetActive(true);
+            centerCharacterImage.sprite = line.characterSprites[0];
+            leftCharacterImage.color = new Color(1, 1, 1, 0);
+            rightCharacterImage.color = new Color(1, 1, 1, 0);
+            nameText.text = line.characterNames[0];
+            previousSpeaker = line.characterNames[0];
+        }
+        else if (line.characterNames.Count == 2)
+        {
+            leftCharacterImage.gameObject.SetActive(true);
+            rightCharacterImage.gameObject.SetActive(true);
 
             leftCharacterImage.sprite = line.characterSprites[0];
             rightCharacterImage.sprite = line.characterSprites[1];
 
-            // 누가 말하는지 확인하고 색상 설정
-            leftCharacterImage.color = (line.speakingCharacterName == leftName) ?
-                new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0.5f);
-            rightCharacterImage.color = (line.speakingCharacterName == rightName) ?
-                new Color(1f, 1f, 1f, 1f) : new Color(1f, 1f, 1f, 0.5f);
+            string speaker = line.speakerName;
 
-            leftCharacterImage.gameObject.SetActive(true);
-            rightCharacterImage.gameObject.SetActive(true);
-        }
-        else if (line.characterNames.Count == 1)
-        {
-            // 캐릭터 1명만 등장할 때
-            nameText.text = line.characterNames[0];
-            centerCharacterImage.sprite = line.characterSprites[0];
-            centerCharacterImage.color = new Color(1f, 1f, 1f, 1f);
-            centerCharacterImage.gameObject.SetActive(true);
+            // speakerName이 비어있거나 잘못되면 이전 화자 사용
+            if (string.IsNullOrEmpty(speaker) || !line.characterNames.Contains(speaker))
+            {
+                speaker = previousSpeaker;
+            }
+
+            nameText.text = speaker;
+
+            // 화자 강조 색상
+            if (speaker == line.characterNames[0])
+            {
+                leftCharacterImage.color = Color.white;
+                rightCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+            }
+            else if (speaker == line.characterNames[1])
+            {
+                leftCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+                rightCharacterImage.color = Color.white;
+            }
+            else
+            {
+                leftCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+                rightCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+            }
+
+            previousSpeaker = speaker;
         }
     }
 
-
     void ShowChoices(List<string> choices, List<int> nextIndexes)
     {
-        choicePanel.SetActive(true); // 선택지 패널 보이기
-
+        // 버튼 리스너 초기화 및 텍스트 설정
         for (int i = 0; i < choiceButtons.Count; i++)
         {
             if (i < choices.Count)
@@ -90,30 +129,41 @@ public class DialogueManager : MonoBehaviour
                 choiceButtons[i].gameObject.SetActive(true);
                 choiceTexts[i].text = choices[i];
 
-                int nextIndex = nextIndexes[i]; // 선택한 후 넘어갈 인덱스 저장
-                choiceButtons[i].onClick.RemoveAllListeners(); // 기존 이벤트 제거
+                int nextIndex = nextIndexes[i]; // 클로저 캡처 주의
+
+                choiceButtons[i].onClick.RemoveAllListeners();
                 choiceButtons[i].onClick.AddListener(() =>
                 {
+                    choicePanel.SetActive(false);     // 선택지 숨기기
                     currentIndex = nextIndex;
-                    ShowDialogue(currentIndex);
-                    choicePanel.SetActive(false); // 선택지 숨기기
+                    ShowDialogue(currentIndex);       // 다음 대사 보여주기
                 });
             }
             else
             {
-                choiceButtons[i].gameObject.SetActive(false); // 사용하지 않는 버튼은 숨김
+                choiceButtons[i].gameObject.SetActive(false);
             }
         }
+
+        choicePanel.SetActive(true); // 마지막에 켜기
     }
 
     public void ShowNextDialogue()
     {
+        Debug.Log($"[👉 ShowNextDialogue CALLED] currentIndex BEFORE: {currentIndex}");
+
         if (currentIndex < dialogueData.lines.Count - 1)
         {
             currentIndex++;
+            Debug.Log($"[✅ SHOWING] currentIndex AFTER: {currentIndex}");
             ShowDialogue(currentIndex);
         }
+        else
+        {
+            Debug.Log("[⛔ 끝까지 도달함]");
+        }
     }
+
 
     public void ShowPreviousDialogue()
     {
@@ -124,4 +174,3 @@ public class DialogueManager : MonoBehaviour
         }
     }
 }
-
