@@ -142,9 +142,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private DialogueData currentDialogueData;
+
+    public void StartDialogue(DialogueData dialogueData)
+    {
+        currentDialogueData = dialogueData;
+        currentIndex = 0;
+        ShowDialogue(currentIndex); // ✅ 정확히 이 index 넘겨줘야 함
+    }
+
+
     public void ShowNextDialogue()
     {
-        if (currentIndex < dialogueData.lines.Count - 1)
+        if (currentIndex < currentDialogueData.lines.Count - 1)
         {
             currentIndex++;
             ShowDialogue(currentIndex);

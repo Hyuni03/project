@@ -1364,8 +1364,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 763173590c694824184c6efdd9b811f9, type: 2}
-  m_sharedMaterial: {fileID: 5749360830452038329, guid: 763173590c694824184c6efdd9b811f9, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fa858f1eb69caf14f9a9678fea26e832, type: 2}
+  m_sharedMaterial: {fileID: 3169315674429256064, guid: fa858f1eb69caf14f9a9678fea26e832, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: fca84b205d014ee468dcd157109f2f62, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2866,16 +2866,28 @@ MonoBehaviour:
   prologuePanel: {fileID: 1092555793}
   dialogueText: {fileID: 494214540}
   triangleButton: {fileID: 1286822186}
-  characterObject: {fileID: 848286951}
-  itemObject: {fileID: 603092388}
+  newDialogueData: {fileID: 0}
+  dialogueManager: {fileID: 0}
   typingSpeed: 0.05
   prologueParagraphs:
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - "\uBE44\uAC00 \uC624\uB294 \uC5B4\uB450\uC6B4 \uBC24.."
+  - "\uB098\uB294 \uADF8\uB140\uC5D0\uAC8C \uB0B4 \uB9C8\uC74C\uC744 \uACE0\uBC31\uD558\uAE30
+    \uC704\uD574\n\uC124\uB808\uB294 \uB9C8\uC74C\uC744 \uAC04\uC2E0\uD788 \uB2E4\uC7A1\uC73C\uBA70
+    \uACE8\uBAA9\uAE38\uC744 \uAC77\uACE0 \uC788\uC5C8\uB2E4."
+  - "\uC8FC\uBCC0\uC5D4 \uC544\uBB34\uB3C4 \uC5C6\uC5C8\uACE0, \uBE57\uC18C\uB9AC\uB9CC\uC774
+    \uC801\uB9C9\uC744 \uCC44\uC6B4 \uADF8 \uC21C\uAC04\u2014\n\uAC11\uC791\uC2A4\uB7EC\uC6B4
+    \uAD49\uC74C\uACFC \uD568\uAED8 \uB098\uB294 \uADF8 \uC790\uB9AC\uC5D0 \uC4F0\uB7EC\uC84C\uB2E4."
+  - "\uD749\uAE30\uB97C \uB4E0 \uB204\uAD70\uAC00\uAC00 \uC870\uC6A9\uD788 \uC0AC\uB77C\uC9C0\uB294
+    \uB4B7\uBAA8\uC2B5\uC774 \uC5B4\uB834\uD48B\uC774 \uBCF4\uC600\uACE0,\n\uADF8
+    \uBAA8\uC2B5\uC744 \uB05D\uC73C\uB85C \uB098\uB294 \uC758\uC2DD\uC744 \uC783\uACE0
+    \uB9D0\uC558\uB2E4."
+  - "\uB4A4\uB2A6\uAC8C \uC778\uADFC \uC8FC\uBBFC\uC5D0\uAC8C \uBC1C\uACAC\uB41C
+    \uB098\uB294 \uB450 \uB2EC \uB3D9\uC548 \uBCD1\uC6D0\uC5D0 \uC785\uC6D0\uD558\uAC8C
+    \uB418\uC5C8\uACE0,\n\uBA38\uB9AC \uBD80\uC0C1\uC73C\uB85C \uC778\uD55C \uD6C4\uC720\uC99D\uC73C\uB85C
+    \uD574\uB9AC\uC131 \uAE30\uC5B5\uC0C1\uC2E4\uC99D\uC744 \uC553\uAC8C \uB418\uC5C8\uB2E4.\r"
+  - "\uADF8\uB85C \uC778\uD574 \uCD5C\uADFC 1\uB144\uAC04\uC758 \uAE30\uC5B5\uC774
+    \uC628\uC804\uD788 \uC0AC\uB77C\uC838\uBC84\uB838\uB2E4"
+  uiRevealInfos: []
 --- !u!4 &1049495863
 Transform:
   m_ObjectHideFlags: 0
@@ -3169,7 +3181,6 @@ GameObject:
   - component: {fileID: 1092555794}
   - component: {fileID: 1092555797}
   - component: {fileID: 1092555796}
-  - component: {fileID: 1092555795}
   m_Layer: 5
   m_Name: ProloguePanel
   m_TagString: Untagged
@@ -3198,42 +3209,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.6079712, y: 49.93509}
   m_SizeDelta: {x: -382.2822, y: -531.4362}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1092555795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092555793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bcff4081301aab49b314af253fcb5c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prologuePanel: {fileID: 1092555793}
-  dialogueText: {fileID: 494214540}
-  triangleButton: {fileID: 1286822186}
-  characterObject: {fileID: 848286951}
-  itemObject: {fileID: 603092388}
-  typingSpeed: 0.1
-  prologueParagraphs:
-  - "\uBE44\uAC00 \uC624\uB294 \uC5B4\uB450\uC6B4 \uBC24.."
-  - "\uB098\uB294 \uADF8\uB140\uC5D0\uAC8C \uB0B4 \uB9C8\uC74C\uC744 \uACE0\uBC31\uD558\uAE30
-    \uC704\uD574 \uC124\uB808\uB294 \uB9C8\uC74C\uC744 \uAC04\uC2E0\uD788 \uB2E4\uC7A1\uC73C\uBA70
-    \uACE8\uBAA9\uAE38\uC744 \uAC77\uACE0 \uC788\uC5C8\uB2E4."
-  - "\uC8FC\uBCC0\uC5D4 \uC544\uBB34\uB3C4 \uC5C6\uC5C8\uACE0, \uBE57\uC18C\uB9AC\uB9CC\uC774
-    \uC801\uB9C9\uC744 \uCC44\uC6B4 \uADF8 \uC21C\uAC04\u2014\n\uAC11\uC791\uC2A4\uB7EC\uC6B4
-    \uAD49\uC74C\uACFC \uD568\uAED8 \uB098\uB294 \uADF8 \uC790\uB9AC\uC5D0 \uC4F0\uB7EC\uC84C\uB2E4."
-  - "\uD749\uAE30\uB97C \uB4E0 \uB204\uAD70\uAC00\uAC00 \uC870\uC6A9\uD788 \uC0AC\uB77C\uC9C0\uB294
-    \uB4B7\uBAA8\uC2B5\uC774 \uC5B4\uB834\uD48B\uC774 \uBCF4\uC600\uACE0,\n\uADF8
-    \uBAA8\uC2B5\uC744 \uB05D\uC73C\uB85C \uB098\uB294 \uC758\uC2DD\uC744 \uC783\uACE0
-    \uB9D0\uC558\uB2E4."
-  - "\uB4A4\uB2A6\uAC8C \uC778\uADFC \uC8FC\uBBFC\uC5D0\uAC8C \uBC1C\uACAC\uB41C
-    \uB098\uB294 \uB450 \uB2EC \uB3D9\uC548 \uBCD1\uC6D0\uC5D0 \uC785\uC6D0\uD558\uAC8C
-    \uB418\uC5C8\uACE0,\n\uBA38\uB9AC \uBD80\uC0C1\uC73C\uB85C \uC778\uD55C \uD6C4\uC720\uC99D\uC73C\uB85C
-    \uD574\uB9AC\uC131 \uAE30\uC5B5\uC0C1\uC2E4\uC99D\uC744 \uC553\uAC8C \uB418\uC5C8\uB2E4.\r"
-  - "\uADF8\uB85C \uC778\uD574 \uCD5C\uADFC 1\uB144\uAC04\uC758 \uAE30\uC5B5\uC774
-    \uC628\uC804\uD788 \uC0AC\uB77C\uC838\uBC84\uB838\uB2E4.\r"
 --- !u!114 &1092555796
 MonoBehaviour:
   m_ObjectHideFlags: 0
