@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1b499934ea5b84e9f1feb983757f34, type: 3}
+  m_Name: Heroine2
+  m_EditorClassIdentifier: 
+  heroineName: 
+  unlockedImage: {fileID: 0}
+  lockedImage: {fileID: 0}
+  description: 
+  requiredAffinity: 10
+  requiredStoryStage: 10
