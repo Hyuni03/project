@@ -1,60 +1,91 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // 씬 이동을 위해 필요
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // "게임 시작" 버튼 클릭 시 실행
+    public GameObject quitPopup;        // 종료 여부 패널
+    public GameObject savePopup;        // 저장 여부 패널
+    public GameObject messagePopup;     // 메시지 표시 패널
+    public TMP_Text messageText;        // 메시지 텍스트
+
+    // 게임 시작
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // "GameScene"으로 이동
+        SceneManager.LoadScene("GameScene");
     }
 
-    // "이어서 하기" 버튼 클릭 시 실행
     public void ContinueGame()
     {
-        SceneManager.LoadScene("ContinueGameScene"); // "ContinueGameScene"으로 이동
+        SceneManager.LoadScene("ContinueGameScene");
     }
 
-    // "프로필" 버튼 클릭 시 실행
     public void OpenProfile()
     {
-        SceneManager.LoadScene("ProfileScene"); // "ProfileScene"으로 이동
+        SceneManager.LoadScene("ProfileScene");
     }
 
-    // "환경설정" 버튼 클릭 시 실행
     public void OpenSettings()
     {
-        SceneManager.LoadScene("SettingsScene"); // "SettingsScene"으로 이동
+        SceneManager.LoadScene("SettingsScene");
     }
 
-    // 게임 종료 확인 팝업
-    public GameObject quitPopup;
-
-    // 게임 종료 버튼 클릭 시 팝업 띄우기
+    // 종료 버튼 눌렀을 때
     public void QuitGame()
     {
-        Debug.Log("게임 종료 버튼 클릭됨!"); // 확인용 로그
-        quitPopup.SetActive(true);  // 팝업을 활성화 (보이게 하기)
+        Debug.Log("게임 종료 버튼 클릭됨!");
+        quitPopup.SetActive(true);
     }
 
-    // "예" 버튼 클릭 시 게임 종료
+    // 종료 여부 패널 - 예
     public void YesQuitGame()
     {
-        Application.Quit();  // 게임 종료
-        Debug.Log("게임 종료");  // 유니티 에디터에서 종료되지 않으므로 로그 출력
+        quitPopup.SetActive(false);
+        savePopup.SetActive(true);
     }
 
-    // "아니오" 버튼 클릭 시 팝업 닫기
+    // 종료 여부 패널 - 아니오
     public void NoQuitGame()
     {
-        quitPopup.SetActive(false);  // 팝업 비활성화 (숨기기)
+        quitPopup.SetActive(false);
     }
 
-    // "나가기" 버튼을 클릭하면 메인 메뉴로 이동
+    // 저장 여부 패널 - 예
+    public void YesSaveGame()
+    {
+        savePopup.SetActive(false);
+        StartCoroutine(SaveAndReturnToMain(true));
+    }
+
+    // 저장 여부 패널 - 아니오
+    public void NoSaveGame()
+    {
+        savePopup.SetActive(false);
+        StartCoroutine(SaveAndReturnToMain(false));
+    }
+
+    // 공통 처리: 저장 여부에 따라 메시지 출력 후 3초 뒤 메인메뉴 이동
+    private IEnumerator SaveAndReturnToMain(bool willSave)
+    {
+        if (willSave)
+        {
+            messageText.text = "저장하는 중입니다.\n3초 후, 메인 화면으로 돌아갑니다.";
+            // TODO: 여기에 실제 저장 로직 추가해도 됨
+        }
+        else
+        {
+            messageText.text = "3초 후,\n 메인 화면으로 돌아갑니다.";
+        }
+
+        messagePopup.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("MainScene");
+    }
+
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainScene"); // 메인 화면으로 이동
+        SceneManager.LoadScene("MainScene");
     }
 }
+
