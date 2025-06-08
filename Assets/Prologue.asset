@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 485c7dc5e3ca9cd4893d5ce90ae702f8, type: 3}
-  m_Name: NewDialogueData
+  m_Name: Prologue
   m_EditorClassIdentifier: 
   lines:
   - characterNames:
@@ -31,7 +31,7 @@ MonoBehaviour:
     dialogueText: "\uC548\uB155"
     speakingCharacterName: 1
     choices: []
-    nextDialogueIndexes: 00000000
+    nextDialogueIndexes: 02000000
   - characterNames:
     - "\uD788\uB85C\uC778"
     - "\uD788\uB85C\uC778"

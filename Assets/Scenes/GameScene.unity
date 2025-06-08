@@ -2715,10 +2715,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 333992686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d42d388721dfb54cbfad679397c137e, type: 3}
+  m_Script: {fileID: 11500000, guid: fbc6071c2a2d5cf4fb033878ac74914c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPopup: {fileID: 656117544}
+  quitPopup: {fileID: 0}
+  savePopup: {fileID: 0}
+  messagePopup: {fileID: 0}
+  messageText: {fileID: 0}
 --- !u!4 &333992688
 Transform:
   m_ObjectHideFlags: 0

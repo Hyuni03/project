@@ -228,5 +228,24 @@ public class KeyboardInputManager : MonoBehaviour
 
         // 언어 표시 (한 / 영)
         langKeyText.text = isKorean ? "한" : "영";
+
+
     }
+    
+    public void OnConfirmNickname()
+    {
+        string nickname = nicknameInput.text;
+
+        if (!string.IsNullOrEmpty(nickname))
+        {
+            PlayerPrefs.SetString("PlayerName", nickname);
+            PlayerPrefs.Save();
+            Debug.Log($"닉네임 저장됨: {nickname}");
+        }
+        else
+        {
+            Debug.LogWarning("닉네임이 비어 있습니다.");
+        }
+    }
+
 }
