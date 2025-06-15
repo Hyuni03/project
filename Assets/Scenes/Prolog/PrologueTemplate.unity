@@ -2866,8 +2866,8 @@ MonoBehaviour:
   prologuePanel: {fileID: 1092555793}
   dialogueText: {fileID: 494214540}
   triangleButton: {fileID: 1286822186}
-  newDialogueData: {fileID: 0}
-  dialogueManager: {fileID: 0}
+  newDialogueData: {fileID: 11400000, guid: c404344dfc06bea44a6469b8ead97a69, type: 2}
+  dialogueManager: {fileID: 1362501871}
   typingSpeed: 0.05
   prologueParagraphs:
   - "\uBE44\uAC00 \uC624\uB294 \uC5B4\uB450\uC6B4 \uBC24.."
@@ -2886,7 +2886,7 @@ MonoBehaviour:
     \uB418\uC5C8\uACE0,\n\uBA38\uB9AC \uBD80\uC0C1\uC73C\uB85C \uC778\uD55C \uD6C4\uC720\uC99D\uC73C\uB85C
     \uD574\uB9AC\uC131 \uAE30\uC5B5\uC0C1\uC2E4\uC99D\uC744 \uC553\uAC8C \uB418\uC5C8\uB2E4.\r"
   - "\uADF8\uB85C \uC778\uD574 \uCD5C\uADFC 1\uB144\uAC04\uC758 \uAE30\uC5B5\uC774
-    \uC628\uC804\uD788 \uC0AC\uB77C\uC838\uBC84\uB838\uB2E4"
+    \uC628\uC804\uD788 \uC0AC\uB77C\uC838\uBC84\uB838\uB2E4."
   uiRevealInfos: []
 --- !u!4 &1049495863
 Transform:
@@ -3944,6 +3944,7 @@ MonoBehaviour:
   - {fileID: 1674141393}
   choicePanel: {fileID: 1679290858}
   choiceLayoutGroup: {fileID: 1679290863}
+  dialogueRoot: {fileID: 1722848368}
 --- !u!4 &1362501872
 Transform:
   m_ObjectHideFlags: 0
@@ -4232,7 +4233,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1449219641
 RectTransform:
   m_ObjectHideFlags: 0

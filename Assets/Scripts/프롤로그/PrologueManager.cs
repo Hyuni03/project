@@ -36,21 +36,36 @@ public class PrologueManager : MonoBehaviour
 
     void Start()
     {
-        dialogueText.richText = false;  // Start()나 Awake() 등에서 설정 가능
-
-        prologuePanel.SetActive(true);
+        dialogueText.richText = false;
+        prologuePanel.SetActive(false); // ❗ 처음에는 꺼둠
         triangleButton.SetActive(false);
         dialogueText.text = "";
 
-        // 모든 오브젝트 미리 숨기기
+        // UI 미리 숨기기
         foreach (var info in uiRevealInfos)
         {
             if (info.uiObjectToReveal != null)
                 info.uiObjectToReveal.SetActive(false);
         }
 
-        StartCoroutine(TypeParagraph());
+        // FadeInEffect 실행 후에 프롤로그 시작
+        FadeInEffect fade = FindObjectOfType<FadeInEffect>();
+        if (fade != null)
+        {
+            fade.onFadeComplete = () =>
+            {
+                prologuePanel.SetActive(true);
+                StartCoroutine(TypeParagraph());
+            };
+        }
+        else
+        {
+            // FadeInEffect 없으면 즉시 실행
+            prologuePanel.SetActive(true);
+            StartCoroutine(TypeParagraph());
+        }
     }
+
 
     IEnumerator TypeParagraph()
     {

@@ -33,10 +33,10 @@ public class DialogueManager : MonoBehaviour
 
     void ShowDialogue(int index)
     {
-        if (dialogueData == null || dialogueData.lines.Count == 0)
+        if (currentDialogueData == null || currentDialogueData.lines.Count == 0)
             return;
 
-        DialogueLine line = dialogueData.lines[index];
+        DialogueLine line = currentDialogueData.lines[index];
 
         // 플레이어 이름 불러오기
         string playerName = PlayerPrefs.GetString("PlayerName", "플레이어");
@@ -55,6 +55,12 @@ public class DialogueManager : MonoBehaviour
         // speaker 설정
         string speaker = string.IsNullOrEmpty(line.speakerName) ? previousSpeaker : line.speakerName;
         speaker = speaker.Trim().Replace("플레이어", playerName);
+
+        // 디버깅 로그 추가
+        Debug.Log($"[DEBUG] 스피커 이름: {speaker}");
+        Debug.Log($"[DEBUG] PlayerName: {playerName}");
+
+        nameText.enabled = true; // 혹시 비활성화 상태면 대비용
         nameText.text = speaker;
 
         if (line.characterNames.Count == 1)
@@ -144,11 +150,17 @@ public class DialogueManager : MonoBehaviour
 
     private DialogueData currentDialogueData;
 
+    public GameObject dialogueRoot; // ← 이 변수 선언이 있어야 합니다!
+
     public void StartDialogue(DialogueData dialogueData)
     {
         currentDialogueData = dialogueData;
         currentIndex = 0;
-        ShowDialogue(currentIndex); // ✅ 정확히 이 index 넘겨줘야 함
+
+        if (dialogueRoot != null)
+            dialogueRoot.SetActive(true); // ✅ 대화창 UI 보이게 하기!
+
+        ShowDialogue(currentIndex);
     }
 
 
