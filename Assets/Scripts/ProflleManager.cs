@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class ProfileManager : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class ProfileManager : MonoBehaviour
     [Header("히로인 ScriptableObject 리스트")]
     public List<HeroineData> heroineList;
 
-    [Header("수동 배치된 카드들")]
+    [Header("히로인 카드")]
     public List<HeroineProfileCard> heroineCards;
 
     [Header("공통 화면")]
@@ -27,10 +27,10 @@ public class ProfileManager : MonoBehaviour
     public TMP_Text noticeText;
     public Button noticeCloseButton;
 
-    private Dictionary<string, int> affinityDict = new Dictionary<string, int>();
-
     [Header("현재 진행 정보")]
     public int currentStoryStage = 2;
+
+    private Dictionary<string, int> affinityDict = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -52,8 +52,8 @@ public class ProfileManager : MonoBehaviour
 
     void InitAffinity()
     {
-        affinityDict["Heroine1"] = 45;
-        affinityDict["Heroine2"] = 20;
+        affinityDict["Heroine1"] = 50;
+        affinityDict["Heroine2"] = 25;
         affinityDict["Heroine3"] = 10;
         affinityDict["Heroine4"] = 0;
     }
@@ -62,22 +62,15 @@ public class ProfileManager : MonoBehaviour
     {
         for (int i = 0; i < heroineList.Count && i < heroineCards.Count; i++)
         {
-            HeroineData data = heroineList[i];
-            HeroineProfileCard card = heroineCards[i];
-
-            bool isUnlocked = IsProfileUnlocked(data);
-            card.Setup(data, isUnlocked);
+            var data = heroineList[i];
+            var card = heroineCards[i];
+            bool unlocked = IsProfileUnlocked(data);
+            card.Setup(data, unlocked);
         }
     }
 
     bool IsProfileUnlocked(HeroineData data)
     {
-        if (data == null || string.IsNullOrEmpty(data.heroineName))
-        {
-            Debug.LogWarning("히로인 데이터가 올바르지 않습니다.");
-            return false;
-        }
-
         int affinity = affinityDict.ContainsKey(data.heroineName)
             ? affinityDict[data.heroineName]
             : 0;
@@ -93,57 +86,27 @@ public class ProfileManager : MonoBehaviour
         switch (data.heroineName)
         {
             case "Heroine1":
-                if (DetailHeroine1 != null)
-                {
-                    DetailHeroine1.SetActive(true);
-                    UpdateDetailContent(DetailHeroine1, data);
-                }
+                DetailHeroine1?.SetActive(true);
                 break;
             case "Heroine2":
-                if (DetailHeroine2 != null)
-                {
-                    DetailHeroine2.SetActive(true);
-                    UpdateDetailContent(DetailHeroine2, data);
-                }
+                DetailHeroine2?.SetActive(true);
                 break;
             case "Heroine3":
-                if (DetailHeroine3 != null)
-                {
-                    DetailHeroine3.SetActive(true);
-                    UpdateDetailContent(DetailHeroine3, data);
-                }
+                DetailHeroine3?.SetActive(true);
                 break;
             case "Heroine4":
-                if (DetailHeroine4 != null)
-                {
-                    DetailHeroine4.SetActive(true);
-                    UpdateDetailContent(DetailHeroine4, data);
-                }
+                DetailHeroine4?.SetActive(true);
                 break;
             default:
-                Debug.LogWarning("잘못된 히로인 이름: " + data.heroineName);
+                Debug.LogWarning("Unknown heroine name: " + data.heroineName);
                 break;
         }
     }
 
-    /// <summary>
-    /// 히로인 상세 패널의 UI 내용을 ScriptableObject 기반으로 업데이트
-    /// </summary>
-    private void UpdateDetailContent(GameObject detailPanel, HeroineData data)
-    {
-        TMP_Text nameText = detailPanel.transform.Find("HeroineNameText")?.GetComponent<TMP_Text>();
-        TMP_Text descText = detailPanel.transform.Find("HeroineDescText")?.GetComponent<TMP_Text>();
-        Image image = detailPanel.transform.Find("Image")?.GetComponent<Image>();
-
-        if (nameText != null) nameText.text = data.displayName;
-        if (descText != null) descText.text = data.description;
-        if (image != null) image.sprite = data.unlockedImage;
-    }
-
     public void CloseAllDetails()
     {
-        DeactivateAllDetailScreens();
-        profileScreen.SetActive(true);
+        DeactivateAllDetailScreens();              // 모든 상세 꺼지고
+        profileScreen.SetActive(true);             // 메인 프로필 화면 다시 보여줌
     }
 
     void DeactivateAllDetailScreens()

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Heroine2
   m_EditorClassIdentifier: 
   heroineName: Heroine2
-  displayName: 2
-  description: "\u3147\u3147"
-  unlockedImage: {fileID: 21300000, guid: 55429288162c3f348a2996b444e9321f, type: 3}
-  lockedImage: {fileID: 21300000, guid: 276d6defcf2535e4b83496b1cfd45c61, type: 3}
-  requiredAffinity: 10
-  requiredStoryStage: 10
+  displayName: "\uC720\uC774"
+  description: dd
+  unlockedImage: {fileID: 21300000, guid: e4eeccaa63bfa674ab0b03f1f7614665, type: 3}
+  lockedImage: {fileID: 21300000, guid: 793603a06ff93d547a1d5548422231a5, type: 3}
+  requiredAffinity: 0
+  requiredStoryStage: 0
