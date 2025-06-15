@@ -2081,7 +2081,7 @@ MonoBehaviour:
   SfxSlider: {fileID: 454695079}
   defaultBgmVolume: 0.5
   defaultSfxVolume: 0.5
-  bgmSource: {fileID: 0}
+  bgmSource: {fileID: 2115184339}
 --- !u!4 &677422346
 Transform:
   m_ObjectHideFlags: 0
@@ -4640,10 +4640,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353887220}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbc6071c2a2d5cf4fb033878ac74914c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d42d388721dfb54cbfad679397c137e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPopup: {fileID: 2020967379}
+  quitPopup: {fileID: 0}
   savePopup: {fileID: 0}
   messagePopup: {fileID: 0}
   messageText: {fileID: 0}

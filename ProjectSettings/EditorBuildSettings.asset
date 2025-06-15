@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prolog/PrologueTemplate.unity
     guid: ba28ab864bb9aa044a1a3950ac38fd24
+  - enabled: 1
+    path: Assets/Scenes/Prolog/Episode1Scene.unity
+    guid: f53cbb5ec017a0045b41d868681e0b35
   m_configObjects: {}

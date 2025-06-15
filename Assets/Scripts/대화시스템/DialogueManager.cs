@@ -2,10 +2,14 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("데이터 연결")]
     public DialogueData dialogueData;
+
+    [Header("UI 연결")]
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     public Image backgroundImage;
@@ -20,15 +24,48 @@ public class DialogueManager : MonoBehaviour
     public List<TMP_Text> choiceTexts;
     public GameObject choicePanel;
     public VerticalLayoutGroup choiceLayoutGroup;
+    public GameObject dialogueRoot;
+
+    [Header("페이드 설정")]
+    public CanvasGroup fadeCanvasGroup;
+    public float fadeDuration = 1f;
+
+    [Header("자동 시작 여부")]
+    public bool autoStartOnSceneLoad = false;
 
     private int currentIndex = 0;
     private string previousSpeaker = "";
+    private DialogueData currentDialogueData;
 
     void Start()
     {
-        ShowDialogue(currentIndex);
         nextButton.onClick.AddListener(ShowNextDialogue);
         prevButton.onClick.AddListener(ShowPreviousDialogue);
+
+        if (autoStartOnSceneLoad && dialogueData != null)
+        {
+            StartDialogue(dialogueData, true); // 자동 시작 시 초기화 O
+        }
+    }
+
+    public void StartDialogue(DialogueData data)
+    {
+        StartDialogue(data, true);
+    }
+
+    public void StartDialogue(DialogueData data, bool resetIndex)
+    {
+        Debug.Log("▶ StartDialogue() 호출됨");
+
+        currentDialogueData = data;
+
+        if (resetIndex)
+            currentIndex = 0;
+
+        if (dialogueRoot != null)
+            dialogueRoot.SetActive(true);
+
+        ShowDialogue(currentIndex);
     }
 
     void ShowDialogue(int index)
@@ -38,29 +75,21 @@ public class DialogueManager : MonoBehaviour
 
         DialogueLine line = currentDialogueData.lines[index];
 
-        // 플레이어 이름 불러오기
         string playerName = PlayerPrefs.GetString("PlayerName", "플레이어");
-
-        // 텍스트 치환해서 표시
         dialogueText.text = line.dialogueText.Replace("플레이어", playerName);
 
         if (line.backgroundSprite != null)
             backgroundImage.sprite = line.backgroundSprite;
 
-        // 초기화
         leftCharacterImage.gameObject.SetActive(false);
         rightCharacterImage.gameObject.SetActive(false);
         centerCharacterImage.gameObject.SetActive(false);
 
-        // speaker 설정
         string speaker = string.IsNullOrEmpty(line.speakerName) ? previousSpeaker : line.speakerName;
         speaker = speaker.Trim().Replace("플레이어", playerName);
+        previousSpeaker = speaker;
 
-        // 디버깅 로그 추가
-        Debug.Log($"[DEBUG] 스피커 이름: {speaker}");
-        Debug.Log($"[DEBUG] PlayerName: {playerName}");
-
-        nameText.enabled = true; // 혹시 비활성화 상태면 대비용
+        nameText.enabled = true;
         nameText.text = speaker;
 
         if (line.characterNames.Count == 1)
@@ -98,11 +127,20 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        previousSpeaker = speaker;
-
-        if (line.choices != null && line.choices.Count > 0 && line.nextDialogueIndexes != null)
+        if (line.choices != null && line.choices.Count > 0 && line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == line.choices.Count)
         {
             ShowChoices(line.choices, line.nextDialogueIndexes);
+        }
+        else if (line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == 1)
+        {
+            nextButton.onClick.RemoveAllListeners();
+            nextButton.onClick.AddListener(() =>
+            {
+                currentIndex = line.nextDialogueIndexes[0];
+                ShowDialogue(currentIndex);
+            });
+
+            choicePanel.SetActive(false);
         }
         else
         {
@@ -127,42 +165,29 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < choiceButtons.Count; i++)
         {
-            if (i < choices.Count)
-            {
-                choiceButtons[i].gameObject.SetActive(true);
-                choiceTexts[i].text = choices[i];
+            choiceButtons[i].onClick.RemoveAllListeners();
+            choiceButtons[i].gameObject.SetActive(false);
+        }
 
-                int nextIndex = nextIndexes[i];
-                choiceButtons[i].onClick.RemoveAllListeners();
-                choiceButtons[i].onClick.AddListener(() =>
-                {
-                    currentIndex = nextIndex;
-                    ShowDialogue(currentIndex);
-                    choicePanel.SetActive(false);
-                });
-            }
-            else
+        for (int i = 0; i < choices.Count && i < choiceButtons.Count; i++)
+        {
+            var button = choiceButtons[i];
+            var text = choiceTexts[i];
+
+            int capturedIndex = nextIndexes[i];
+
+            button.gameObject.SetActive(true);
+            text.text = choices[i];
+
+            button.onClick.AddListener(() =>
             {
-                choiceButtons[i].gameObject.SetActive(false);
-            }
+                Debug.Log($"[선택지 클릭] 이동 인덱스: {capturedIndex}");
+                choicePanel.SetActive(false);
+                currentIndex = capturedIndex;
+                ShowDialogue(currentIndex);
+            });
         }
     }
-
-    private DialogueData currentDialogueData;
-
-    public GameObject dialogueRoot; // ← 이 변수 선언이 있어야 합니다!
-
-    public void StartDialogue(DialogueData dialogueData)
-    {
-        currentDialogueData = dialogueData;
-        currentIndex = 0;
-
-        if (dialogueRoot != null)
-            dialogueRoot.SetActive(true); // ✅ 대화창 UI 보이게 하기!
-
-        ShowDialogue(currentIndex);
-    }
-
 
     public void ShowNextDialogue()
     {
@@ -170,6 +195,11 @@ public class DialogueManager : MonoBehaviour
         {
             currentIndex++;
             ShowDialogue(currentIndex);
+        }
+        else
+        {
+            Debug.Log("▶ 마지막 대사 → Episode1Scene으로 이동");
+            SceneManager.LoadScene("Episode1Scene");
         }
     }
 
