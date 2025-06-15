@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b499934ea5b84e9f1feb983757f34, type: 3}
   m_Name: Heroine3
   m_EditorClassIdentifier: 
-  heroineName: 
-  unlockedImage: {fileID: 0}
-  lockedImage: {fileID: 0}
-  description: 
+  heroineName: Heroine3
+  displayName: 3
+  description: "\u3147\u3147"
+  unlockedImage: {fileID: 21300000, guid: e4eeccaa63bfa674ab0b03f1f7614665, type: 3}
+  lockedImage: {fileID: 21300000, guid: 793603a06ff93d547a1d5548422231a5, type: 3}
   requiredAffinity: 10
   requiredStoryStage: 10

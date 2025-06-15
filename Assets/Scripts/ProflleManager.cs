@@ -64,6 +64,7 @@ public class ProfileManager : MonoBehaviour
         {
             HeroineData data = heroineList[i];
             HeroineProfileCard card = heroineCards[i];
+
             bool isUnlocked = IsProfileUnlocked(data);
             card.Setup(data, isUnlocked);
         }
@@ -71,11 +72,16 @@ public class ProfileManager : MonoBehaviour
 
     bool IsProfileUnlocked(HeroineData data)
     {
+        if (data == null || string.IsNullOrEmpty(data.heroineName))
+        {
+            Debug.LogWarning("히로인 데이터가 올바르지 않습니다.");
+            return false;
+        }
+
         int affinity = affinityDict.ContainsKey(data.heroineName)
             ? affinityDict[data.heroineName]
             : 0;
 
-        // 두 조건 모두 충족해야 해금
         return (affinity >= data.requiredAffinity && currentStoryStage >= data.requiredStoryStage);
     }
 
@@ -87,21 +93,51 @@ public class ProfileManager : MonoBehaviour
         switch (data.heroineName)
         {
             case "Heroine1":
-                if (DetailHeroine1 != null) DetailHeroine1.SetActive(true);
+                if (DetailHeroine1 != null)
+                {
+                    DetailHeroine1.SetActive(true);
+                    UpdateDetailContent(DetailHeroine1, data);
+                }
                 break;
             case "Heroine2":
-                if (DetailHeroine2 != null) DetailHeroine2.SetActive(true);
+                if (DetailHeroine2 != null)
+                {
+                    DetailHeroine2.SetActive(true);
+                    UpdateDetailContent(DetailHeroine2, data);
+                }
                 break;
             case "Heroine3":
-                if (DetailHeroine3 != null) DetailHeroine3.SetActive(true);
+                if (DetailHeroine3 != null)
+                {
+                    DetailHeroine3.SetActive(true);
+                    UpdateDetailContent(DetailHeroine3, data);
+                }
                 break;
             case "Heroine4":
-                if (DetailHeroine4 != null) DetailHeroine4.SetActive(true);
+                if (DetailHeroine4 != null)
+                {
+                    DetailHeroine4.SetActive(true);
+                    UpdateDetailContent(DetailHeroine4, data);
+                }
                 break;
             default:
                 Debug.LogWarning("잘못된 히로인 이름: " + data.heroineName);
                 break;
         }
+    }
+
+    /// <summary>
+    /// 히로인 상세 패널의 UI 내용을 ScriptableObject 기반으로 업데이트
+    /// </summary>
+    private void UpdateDetailContent(GameObject detailPanel, HeroineData data)
+    {
+        TMP_Text nameText = detailPanel.transform.Find("HeroineNameText")?.GetComponent<TMP_Text>();
+        TMP_Text descText = detailPanel.transform.Find("HeroineDescText")?.GetComponent<TMP_Text>();
+        Image image = detailPanel.transform.Find("Image")?.GetComponent<Image>();
+
+        if (nameText != null) nameText.text = data.displayName;
+        if (descText != null) descText.text = data.description;
+        if (image != null) image.sprite = data.unlockedImage;
     }
 
     public void CloseAllDetails()
