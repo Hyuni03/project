@@ -214,10 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d42d388721dfb54cbfad679397c137e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPopup: {fileID: 0}
-  savePopup: {fileID: 0}
-  messagePopup: {fileID: 878249613}
-  messageText: {fileID: 0}
+  quitPopup: {fileID: 4345123}
+  savePopup: {fileID: 124402482}
+  messagePopup: {fileID: 948171513}
+  messageText: {fileID: 1136688731}
 --- !u!1 &101785635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2948,9 +2948,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitPopup: {fileID: 4345123}
-  savePopup: {fileID: 0}
-  messagePopup: {fileID: 0}
-  messageText: {fileID: 0}
+  savePopup: {fileID: 124402482}
+  messagePopup: {fileID: 948171513}
+  messageText: {fileID: 1136688731}
 --- !u!4 &1740698381
 Transform:
   m_ObjectHideFlags: 0
