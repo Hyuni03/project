@@ -1,67 +1,79 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioSectionController : MonoBehaviour
 {
-    [Header("UI ¿¬°á")]
-    public GameObject Content2;           // ¿Àµğ¿À ¼³Á¤ ÄÜÅÙÃ÷ ¿µ¿ª
-    public Slider BgmSlider;              // BGM º¼·ı Á¶Àı ½½¶óÀÌ´õ
-    public Slider SfxSlider;              // È¿°úÀ½ º¼·ı Á¶Àı ½½¶óÀÌ´õ
+    [Header("UI ì—°ê²°")]
+    public GameObject Content2;           // ì˜¤ë””ì˜¤ ì„¤ì • ì½˜í…ì¸  ì˜ì—­
+    public Slider BgmSlider;              // BGM ë³¼ë¥¨ ì¡°ì ˆ ìŠ¬ë¼ì´ë”
+    public Slider SfxSlider;              // íš¨ê³¼ìŒ ë³¼ë¥¨ ì¡°ì ˆ ìŠ¬ë¼ì´ë”
 
-    [Header("±âº»°ª")]
-    public float defaultBgmVolume = 0.5f; // ±âº» BGM º¼·ı
-    public float defaultSfxVolume = 0.5f; // ±âº» È¿°úÀ½ º¼·ı
+    [Header("ê¸°ë³¸ê°’")]
+    public float defaultBgmVolume = 0.5f; // ê¸°ë³¸ BGM ë³¼ë¥¨
+    public float defaultSfxVolume = 0.5f; // ê¸°ë³¸ íš¨ê³¼ìŒ ë³¼ë¥¨
 
-    [Header("¿Àµğ¿À ¼Ò½º")]
-    public AudioSource bgmSource;         // ½ÇÁ¦·Î Àç»ıÇÒ BGM ¼Ò½º (BGMPlayer¿¡ ºÙÀº AudioSource)
+    [Header("ì˜¤ë””ì˜¤ ì†ŒìŠ¤")]
+    public AudioSource bgmSource;         // ì‹¤ì œë¡œ ì¬ìƒí•  BGM ì†ŒìŠ¤ (BGMPlayerì— ë¶™ì€ AudioSource)
 
-    private bool isOpen = false;          // ÄÜÅÙÃ÷ ¿­¸² »óÅÂ
+    private bool isOpen = false;          // ì½˜í…ì¸  ì—´ë¦¼ ìƒíƒœ
 
     void Start()
     {
-        // BGMPlayer ¿ÀºêÁ§Æ® ÀÚµ¿ Å½»ö (DontDestroyµÈ ¿ÀºêÁ§Æ® Æ÷ÇÔ)
+        Debug.Log("ğŸŸ¢ AudioSectionController.Start() í˜¸ì¶œë¨");
+
         if (bgmSource == null)
         {
-            GameObject bgmObj = GameObject.Find("BGMPlayer");
-            if (bgmObj != null)
+            if (BGMPlayer.Instance != null)
             {
-                bgmSource = bgmObj.GetComponent<AudioSource>();
+                bgmSource = BGMPlayer.Instance.audioSource;
+                Debug.Log("âœ… bgmSource ì—°ê²° ì„±ê³µ");
+            }
+            else
+            {
+                Debug.LogWarning("âŒ BGMPlayer.Instanceê°€ nullì…ë‹ˆë‹¤");
             }
         }
 
-        // ÃÊ±â º¼·ı ¼³Á¤
         BgmSlider.value = defaultBgmVolume;
         SfxSlider.value = defaultSfxVolume;
 
-        // ½½¶óÀÌ´õ ÀÌº¥Æ® µî·Ï
         BgmSlider.onValueChanged.AddListener(SetBgmVolume);
     }
 
-    // "¿Àµğ¿À ¼³Á¤" ¹öÆ° Å¬¸¯ ½Ã ÄÜÅÙÃ÷ ¿­±â/´İ±â
+
+    // "ì˜¤ë””ì˜¤ ì„¤ì •" ë²„íŠ¼ í´ë¦­ ì‹œ ì½˜í…ì¸  ì—´ê¸°/ë‹«ê¸°
     public void ToggleContent()
     {
         isOpen = !isOpen;
         Content2.SetActive(isOpen);
     }
 
-    // BGM º¼·ı ½½¶óÀÌ´õ°¡ º¯°æµÉ ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    // BGM ë³¼ë¥¨ ìŠ¬ë¼ì´ë”ê°€ ë³€ê²½ë  ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
     public void SetBgmVolume(float volume)
     {
+        Debug.Log($"ğŸ”Š SetBgmVolume í˜¸ì¶œë¨: {volume}");
+
         if (bgmSource != null)
         {
             bgmSource.volume = volume;
+            Debug.Log($"ğŸµ ë³¼ë¥¨ ì ìš©ë¨: {bgmSource.volume}");
+        }
+        else
+        {
+            Debug.LogWarning("â— bgmSourceê°€ nullì…ë‹ˆë‹¤");
         }
     }
 
-    // "±âº»°ª º¹¿ø" ¹öÆ° Å¬¸¯ ½Ã
+
+    // "ê¸°ë³¸ê°’ ë³µì›" ë²„íŠ¼ í´ë¦­ ì‹œ
     public void ResetToDefault()
     {
         BgmSlider.value = defaultBgmVolume;
         SfxSlider.value = defaultSfxVolume;
 
-        // BGM º¼·ıµµ Áï½Ã Àû¿ë
+        // BGM ë³¼ë¥¨ë„ ì¦‰ì‹œ ì ìš©
         SetBgmVolume(defaultBgmVolume);
 
-        Debug.Log("¿Àµğ¿À ¼³Á¤ ¡æ ±âº»°ªÀ¸·Î º¹¿øµÊ");
+        Debug.Log("ì˜¤ë””ì˜¤ ì„¤ì • â†’ ê¸°ë³¸ê°’ìœ¼ë¡œ ë³µì›ë¨");
     }
 }

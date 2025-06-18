@@ -145,6 +145,10 @@ public class DialogueManager : MonoBehaviour
         else
         {
             choicePanel.SetActive(false);
+
+            // ✅ 마지막 대사에서 Next 버튼 리스너를 다시 연결
+            nextButton.onClick.RemoveAllListeners();
+            nextButton.onClick.AddListener(ShowNextDialogue);
         }
     }
 
@@ -191,6 +195,12 @@ public class DialogueManager : MonoBehaviour
 
     public void ShowNextDialogue()
     {
+        if (currentDialogueData == null || currentDialogueData.lines == null)
+        {
+            Debug.LogWarning("DialogueData가 없어서 진행할 수 없습니다.");
+            return;
+        }
+
         if (currentIndex < currentDialogueData.lines.Count - 1)
         {
             currentIndex++;
@@ -198,10 +208,24 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("▶ 마지막 대사 → Episode1Scene으로 이동");
-            SceneManager.LoadScene("Episode1Scene");
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentSceneIndex + 1;
+
+            Debug.Log($"▶ 씬 {currentSceneIndex} 종료 → 다음 씬 {nextSceneIndex}으로 이동");
+
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+            else
+            {
+                Debug.LogWarning("▶ 다음 씬 없음: 마지막 씬입니다.");
+            }
         }
+
     }
+
+
 
     public void ShowPreviousDialogue()
     {
