@@ -13,163 +13,178 @@ MonoBehaviour:
   m_Name: Episode1 DialogueData
   m_EditorClassIdentifier: 
   lines:
-  - characterNames: []
-    characterSprites: []
-    backgroundSprite: {fileID: 21300000, guid: d6eb79e2d50ee2543a29aca1f742ce73, type: 3}
+  - speakerName: 
     dialogueText: "(\uC8FC\uC778\uACF5\uACFC \uBBFC\uC544\uAC00 \uCE74\uD398\uC5D0\uC11C
       \uB9C8\uC8FC \uC549\uC544 \uC788\uB2E4.)"
+    characterNames: []
+    characterSprites: []
+    backgroundSprite: {fileID: 21300000, guid: d6eb79e2d50ee2543a29aca1f742ce73, type: 3}
     choices: []
     nextDialogueIndexes: 
-    speakerName: 
-  - characterNames:
-    - 
-    characterSprites:
-    - {fileID: 21300000, guid: 06a8b0729bfc1cf4895d0d24e181f2e8, type: 3}
-    backgroundSprite: {fileID: 0}
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "\uC774\uB7F0 \uB370 \uCC98\uC74C \uC640\uBD24\uC9C0? \uBCD1\uC6D0\uB9CC
       \uC624\uAC00\uB358 \uB108\uD55C\uD14C\uB294 \uC2E0\uC138\uACC4\uC77C\uAC78?"
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: 06a8b0729bfc1cf4895d0d24e181f2e8, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uD558\uD558\u2026 \uC9C4\uC9DC \uC624\uB79C\uB9CC\uC5D0 \uC774\uB807\uAC8C
       \uBC14\uAE65\uACF5\uAE30\uB97C \uB9C8\uC2DC\uB294 \uB290\uB08C\uC774\uC57C."
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: 06a8b0729bfc1cf4895d0d24e181f2e8, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "\uB0B4\uAC00 \uC544\uB2C8\uC5C8\uC73C\uBA74 \uACC4\uC18D \uCE68\uB300\uC5D0
       \uB204\uC6CC \uC788\uC5C8\uC744\uAC78? \uB098 \uC5C6\uC5C8\uC73C\uBA74 \uC5B4\uCA54
       \uBED4\uD588\uB0D0."
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: 06a8b0729bfc1cf4895d0d24e181f2e8, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uADF8\uB7EC\uAC8C\u2026 \uACE0\uB9D9\uB2E4, \uBBFC\uC544."
+    characterNames:
+    - 
+    characterSprites:
+    - {fileID: 21300000, guid: 06a8b0729bfc1cf4895d0d24e181f2e8, type: 3}
+    backgroundSprite: {fileID: 0}
     choices: []
     nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
-  - characterNames:
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "(\uC2DC\uC120\uC744 \uD53C\uD558\uBA70) \u2026\uBB50, \uAD1C\uCC2E\uC544.
+      \uB108\uB791 \uB098\uC624\uACE0 \uC2F6\uC5B4\uC11C \uADF8\uB7F0 \uAC70\uB2C8\uAE4C."
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
-    dialogueText: "(\uC2DC\uC120\uC744 \uD53C\uD558\uBA70) \u2026\uBB50, \uAD1C\uCC2E\uC544.
-      \uB108\uB791 \uB098\uC624\uACE0 \uC2F6\uC5B4\uC11C \uADF8\uB7F0 \uAC70\uB2C8\uAE4C."
     choices: []
     nextDialogueIndexes: 
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "(\uC2DC\uC120\uC744 \uD53C\uD558\uBA70) \u2026\uBB50, \uAD1C\uCC2E\uC544.
+      \uB108\uB791 \uB098\uC624\uACE0 \uC2F6\uC5B4\uC11C \uADF8\uB7F0 \uAC70\uB2C8\uAE4C."
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
-    dialogueText: "(\uC2DC\uC120\uC744 \uD53C\uD558\uBA70) \u2026\uBB50, \uAD1C\uCC2E\uC544.
-      \uB108\uB791 \uB098\uC624\uACE0 \uC2F6\uC5B4\uC11C \uADF8\uB7F0 \uAC70\uB2C8\uAE4C."
     choices:
     - "\uB2E4\uC74C\uC5D0\uB3C4 \uB610 \uAC19\uC774 \uB098\uC640 \uC904\uB798?"
     - "\uC774\uB7F0 \uACF3\uC740 \uD63C\uC790\uBCF4\uB2E4 \uB458\uC774 \uC88B\uB124."
     - "\uC74C\uC2DD\uAC12\uC740 \uB124\uAC00 \uB0B4\uB294 \uAC70\uC9C0?"
     nextDialogueIndexes: 07000000090000000b000000
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
-    - 
-    characterSprites:
-    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
-    backgroundSprite: {fileID: 0}
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uB2E4\uC74C\uC5D0\uB3C4 \uB610 \uAC19\uC774 \uB098\uC640 \uC904\uB798?"
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 08000000
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "(\uAE5C\uC9DD \uB180\uB780 \uB4EF) \u2026\uBC14\uBCF4\uC57C. \uC774\uB7F0
       \uB370\uC774\uD2B8 \uAC19\uC740 \uB9D0\u2026 \uC9C4\uC9DC."
-    choices: []
-    nextDialogueIndexes: 0d000000
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 0d000000
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uC774\uB7F0 \uACF3\uC740 \uD63C\uC790\uBCF4\uB2E4 \uB458\uC774
       \uC88B\uB124."
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 0a000000
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "(\uC785\uAF2C\uB9AC\uB97C \uC62C\uB9AC\uBA70) \uC54C\uAE34 \uC544\uB294\uAD6C\uB098.
       \uADF8\uB798, \uB2E4\uC74C\uC5D0\uB3C4 \uC0DD\uAC01\uD574 \uBCFC\uAC8C."
+    characterNames:
+    - 
+    characterSprites:
+    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
+    backgroundSprite: {fileID: 0}
     choices: []
     nextDialogueIndexes: 0d000000
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
-    - 
-    characterSprites:
-    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
-    backgroundSprite: {fileID: 0}
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uC74C\uC2DD\uAC12\uC740 \uB124\uAC00 \uB0B4\uB294 \uAC70\uC9C0?"
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 0c000000
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "\u2026\uC9C4\uC2EC\uC774\uC57C? \uB410\uC5B4, \uB098\uC911\uC5D0
       \uBCD1\uC6D0\uBE44\uB3C4 \uCCAD\uAD6C\uD558\uACA0\uB124?"
+    characterNames:
+    - 
+    characterSprites:
+    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
+    backgroundSprite: {fileID: 0}
     choices: []
     nextDialogueIndexes: 0d000000
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
-    - 
-    characterSprites:
-    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
-    backgroundSprite: {fileID: 0}
+    isFinalLine: 0
+  - speakerName: 
     dialogueText: "(\uBBFC\uC544\uB294 \uCEF5\uC744 \uB450 \uC190\uC73C\uB85C \uAC10\uC2F8\uBA70
       \uC8FC\uC778\uACF5\uC744 \uBC14\uB77C\uBCF8\uB2E4.)"
-    choices: []
-    nextDialogueIndexes: 
-    speakerName: 
-  - characterNames:
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
-    dialogueText: "\uBBFC\uC544: \uADFC\uB370 \uC788\uC796\uC544\u2026 \uC774\uB7F0
-      \uC2DC\uAC04, \uC9C4\uC9DC \uC624\uB79C\uB9CC\uC774\uC57C. \uADF8\uB0E5\u2026
-      \uACE0\uB9C8\uC6CC."
     choices: []
-    nextDialogueIndexes: 
-    speakerName: "\uBBFC\uC544"
-  - characterNames:
+    nextDialogueIndexes: 0e000000
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "\uADFC\uB370 \uC788\uC796\uC544\u2026 \uC774\uB7F0 \uC2DC\uAC04,
+      \uC9C4\uC9DC \uC624\uB79C\uB9CC\uC774\uC57C. \uADF8\uB0E5\u2026 \uACE0\uB9C8\uC6CC."
+    characterNames:
     - 
     characterSprites:
     - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
     backgroundSprite: {fileID: 0}
+    choices: []
+    nextDialogueIndexes: 0f000000
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uB098\uC57C\uB9D0\uB85C. \uB355\uBD84\uC5D0 \uC0B4\uC544 \uC788\uB294
       \uAE30\uBD84\uC774\uC57C."
+    characterNames:
+    - 
+    characterSprites:
+    - {fileID: 21300000, guid: c4a6958ba4b86d84295007d91c22eaa0, type: 3}
+    backgroundSprite: {fileID: 0}
     choices: []
     nextDialogueIndexes: 
-    speakerName: "\uD50C\uB808\uC774\uC5B4"
+    isFinalLine: 1

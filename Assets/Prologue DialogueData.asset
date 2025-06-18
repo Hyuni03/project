@@ -88,7 +88,7 @@ MonoBehaviour:
     choices: []
     nextDialogueIndexes: 
     isFinalLine: 0
-  - speakerName: "\uD50C\uB808\uC774\uC5B4"
+  - speakerName: "\uBBFC\uC544"
     dialogueText: "\uADF8\uB7F0\uB370\u2026 \uC774 \uC218\uC5C5, \uB0B4\uAC00 \uCD94\uCC9C\uD55C
       \uAC70 \uAE30\uC5B5\uB098? \uADF8\uB54C \uBCD1\uC6D0\uC5D0\uC11C \uAC19\uC774
       \uCC3E\uC544\uBD24\uC796\uC544."
@@ -132,7 +132,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c10092d6a41588d428fec984ba9b54f7, type: 3}
     backgroundSprite: {fileID: 21300000, guid: 184e1d2d0a77d2f4fb42136cacf46cf0, type: 3}
     choices: []
-    nextDialogueIndexes: 
+    nextDialogueIndexes: 0b000000
     isFinalLine: 0
   - speakerName: "\uBBFC\uC544"
     dialogueText: "(\uC870\uAE08 \uB2F9\uD669\uD55C \uB4EF) \u2026\uADF8\uB7F0 \uB9D0
@@ -142,9 +142,8 @@ MonoBehaviour:
     characterSprites:
     - {fileID: 21300000, guid: c10092d6a41588d428fec984ba9b54f7, type: 3}
     backgroundSprite: {fileID: 21300000, guid: 184e1d2d0a77d2f4fb42136cacf46cf0, type: 3}
-    choices:
-    - 16
-    nextDialogueIndexes: 
+    choices: []
+    nextDialogueIndexes: 10000000
     isFinalLine: 0
   - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "\uB124 \uCD94\uCC9C\uC774\uBA74 \uBBFF\uC744 \uC218 \uC788\uC9C0."
@@ -154,7 +153,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c10092d6a41588d428fec984ba9b54f7, type: 3}
     backgroundSprite: {fileID: 21300000, guid: 184e1d2d0a77d2f4fb42136cacf46cf0, type: 3}
     choices: []
-    nextDialogueIndexes: 
+    nextDialogueIndexes: 0d000000
     isFinalLine: 0
   - speakerName: "\uBBFC\uC544"
     dialogueText: "\uBB50\uC57C, \uC785\uB9CC \uC0B4\uC558\uB124. \uADF8\uB798\uB3C4\u2026
@@ -175,10 +174,11 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c10092d6a41588d428fec984ba9b54f7, type: 3}
     backgroundSprite: {fileID: 21300000, guid: 184e1d2d0a77d2f4fb42136cacf46cf0, type: 3}
     choices: []
-    nextDialogueIndexes: 
+    nextDialogueIndexes: 0f000000
     isFinalLine: 0
   - speakerName: "\uBBFC\uC544"
-    dialogueText: "\uB124 \uCD94\uCC9C\uC774\uBA74 \uBBFF\uC744 \uC218 \uC788\uC9C0."
+    dialogueText: "\u2026\uD765. \uADF8\uB0E5 \uD63C\uC790 \uB4E4\uC744 \uAC78 \uADF8\uB7AC\uB098
+      \uBD10."
     characterNames:
     - "\uBBFC\uC544"
     characterSprites:
@@ -196,7 +196,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: c10092d6a41588d428fec984ba9b54f7, type: 3}
     backgroundSprite: {fileID: 21300000, guid: 184e1d2d0a77d2f4fb42136cacf46cf0, type: 3}
     choices: []
-    nextDialogueIndexes: 
+    nextDialogueIndexes: 11000000
     isFinalLine: 0
   - speakerName: "\uD50C\uB808\uC774\uC5B4"
     dialogueText: "(\uACE0\uAC1C\uB97C \uB044\uB355\uC774\uBA70) \uB124, \uC120\uC0DD\uB2D8\u2026"
