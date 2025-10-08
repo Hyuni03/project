@@ -23,7 +23,7 @@ public class AudioSectionController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("🟢 AudioSectionController.Start() 호출됨");
+        Debug.Log("AudioSectionController.Start() 호출됨");
 
         // ✅ BGM 소스 연결
         if (bgmSource == null)
@@ -31,11 +31,11 @@ public class AudioSectionController : MonoBehaviour
             if (BGMPlayer.Instance != null)
             {
                 bgmSource = BGMPlayer.Instance.audioSource;
-                Debug.Log("✅ bgmSource 연결 성공");
+                Debug.Log("bgmSource 연결 성공");
             }
             else
             {
-                Debug.LogWarning("❌ BGMPlayer.Instance가 null입니다");
+                Debug.LogWarning("BGMPlayer.Instance가 null입니다");
             }
         }
 
@@ -55,55 +55,43 @@ public class AudioSectionController : MonoBehaviour
         SetSfxVolume(savedSfxVolume);
     }
 
-    // 🎚 "오디오 설정" 버튼 클릭 시 콘텐츠 열기/닫기
+    // "오디오 설정" 버튼 클릭 시 콘텐츠 열기/닫기
     public void ToggleContent()
     {
         isOpen = !isOpen;
         Content2.SetActive(isOpen);
     }
 
-    // 🎵 BGM 볼륨 슬라이더 변경 시 호출
+    // BGM 볼륨 슬라이더 변경 시 호출
     public void SetBgmVolume(float volume)
     {
-        Debug.Log($"🔊 SetBgmVolume 호출됨: {volume}");
-
         if (bgmSource != null)
         {
             bgmSource.volume = volume;
-            PlayerPrefs.SetFloat(PREF_BGM, volume); // 🔹 볼륨 저장
-        }
-        else
-        {
-            Debug.LogWarning("❗ bgmSource가 null입니다");
+            PlayerPrefs.SetFloat(PREF_BGM, volume); // 볼륨 저장
         }
     }
 
-    // 🎧 SFX 볼륨 슬라이더 변경 시 호출
+    // SFX 볼륨 슬라이더 변경 시 호출
     public void SetSfxVolume(float volume)
     {
-        Debug.Log($"🎧 SetSfxVolume 호출됨: {volume}");
-
         if (sfxSource != null)
         {
             sfxSource.volume = volume;
-            PlayerPrefs.SetFloat(PREF_SFX, volume); // 🔹 효과음 볼륨 저장
-        }
-        else
-        {
-            Debug.LogWarning("❗ sfxSource가 null입니다");
+            PlayerPrefs.SetFloat(PREF_SFX, volume); // 효과음 볼륨 저장
         }
     }
 
-    // 🧩 버튼 클릭 시 테스트용 효과음 재생
+    // 버튼 클릭 시 테스트용 효과음 재생
     public void PlayClickSound(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
         {
-            sfxSource.PlayOneShot(clip); // 🔹 효과음 1회 재생
+            sfxSource.PlayOneShot(clip); // 효과음 1회 재생
         }
     }
 
-    // 🔁 "기본값 복원" 버튼 클릭 시
+    // 기본값 복원 버튼 클릭 시
     public void ResetToDefault()
     {
         BgmSlider.value = defaultBgmVolume;

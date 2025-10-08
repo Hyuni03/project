@@ -1,166 +1,232 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // 씬 전환을 위해 필요
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
-    public DialogueData dialogueData;         // 대사 데이터 (ScriptableObject 형식)
-    public string nextSceneName;              // 마지막 대사 후 넘어갈 씬 이름
+    [Header("데이터 연결")]
+    public DialogueData dialogueData;
 
-    // UI 텍스트 및 이미지 요소
-    public TMP_Text nameText;                 // 캐릭터 이름 출력 텍스트
-    public TMP_Text dialogueText;             // 대사 텍스트
-    public Image backgroundImage;             // 배경 이미지
+    [Header("UI 연결")]
+    public TMP_Text nameText;
+    public TMP_Text dialogueText;
+    public Image backgroundImage;
 
-    // 캐릭터 이미지들
     public Image centerCharacterImage;
     public Image leftCharacterImage;
     public Image rightCharacterImage;
 
-    // 네비게이션 버튼
     public Button nextButton;
     public Button prevButton;
+    public List<Button> choiceButtons;
+    public List<TMP_Text> choiceTexts;
+    public GameObject choicePanel;
+    public VerticalLayoutGroup choiceLayoutGroup;
+    public GameObject dialogueRoot;
 
-    // 선택지 관련 UI
-    public List<Button> choiceButtons;        // 선택지 버튼들
-    public List<TMP_Text> choiceTexts;        // 선택지 텍스트
-    public GameObject choicePanel;            // 선택지 전체 패널
+    [Header("페이드 설정")]
+    public CanvasGroup fadeCanvasGroup;
+    public float fadeDuration = 1f;
 
-    private int currentIndex = 0;             // 현재 대사 인덱스
+    [Header("자동 시작 여부")]
+    public bool autoStartOnSceneLoad = false;
+
+    private int currentIndex = 0;
+    private string previousSpeaker = "";
+    private DialogueData currentDialogueData;
 
     void Start()
     {
-        // 이어하기 기능: 저장된 인덱스가 있으면 해당 위치부터 시작
-        if (PlayerPrefs.HasKey("ContinueIndex"))
-        {
-            currentIndex = PlayerPrefs.GetInt("ContinueIndex", 0);
-            PlayerPrefs.DeleteKey("ContinueIndex"); // 불러온 후 삭제 (한 번만 사용)
-        }
-
-        // 첫 대사 표시
-        ShowDialogue(currentIndex);
-
-        // 버튼 이벤트 등록
         nextButton.onClick.AddListener(ShowNextDialogue);
         prevButton.onClick.AddListener(ShowPreviousDialogue);
+
+        if (autoStartOnSceneLoad && dialogueData != null)
+        {
+            StartDialogue(dialogueData, true); // 자동 시작 시 초기화 O
+        }
     }
 
-    // index 번째 대사를 화면에 출력
+    public void StartDialogue(DialogueData data)
+    {
+        StartDialogue(data, true);
+    }
+
+    public void StartDialogue(DialogueData data, bool resetIndex)
+    {
+        Debug.Log("▶ StartDialogue() 호출됨");
+
+        currentDialogueData = data;
+
+        if (resetIndex)
+            currentIndex = 0;
+
+        if (dialogueRoot != null)
+            dialogueRoot.SetActive(true);
+
+        ShowDialogue(currentIndex);
+    }
+
     void ShowDialogue(int index)
     {
-        if (dialogueData == null || dialogueData.lines.Count == 0)
+        if (currentDialogueData == null || currentDialogueData.lines.Count == 0)
             return;
 
-        DialogueLine line = dialogueData.lines[index];
-        dialogueText.text = line.dialogueText;
+        DialogueLine line = currentDialogueData.lines[index];
 
-        // 배경 이미지 설정
+        string playerName = PlayerPrefs.GetString("PlayerName", "플레이어");
+        dialogueText.text = line.dialogueText.Replace("플레이어", playerName);
+
         if (line.backgroundSprite != null)
             backgroundImage.sprite = line.backgroundSprite;
 
-        // 캐릭터 이미지 초기화
-        centerCharacterImage.gameObject.SetActive(false);
         leftCharacterImage.gameObject.SetActive(false);
         rightCharacterImage.gameObject.SetActive(false);
+        centerCharacterImage.gameObject.SetActive(false);
 
-        // 이름 표시
-        nameText.text = line.speakingCharacterName;
+        string speaker = string.IsNullOrEmpty(line.speakerName) ? previousSpeaker : line.speakerName;
+        speaker = speaker.Trim().Replace("플레이어", playerName);
+        previousSpeaker = speaker;
 
-        // 캐릭터가 2명 등장하는 경우
-        if (line.characterNames.Count == 2)
+        nameText.enabled = true;
+        nameText.text = speaker;
+
+        if (line.characterNames.Count == 1)
         {
-            string leftName = line.characterNames[0];
-            string rightName = line.characterNames[1];
+            centerCharacterImage.gameObject.SetActive(true);
+            centerCharacterImage.sprite = line.characterSprites[0];
+            leftCharacterImage.color = new Color(1, 1, 1, 0);
+            rightCharacterImage.color = new Color(1, 1, 1, 0);
+        }
+        else if (line.characterNames.Count == 2)
+        {
+            leftCharacterImage.gameObject.SetActive(true);
+            rightCharacterImage.gameObject.SetActive(true);
 
             leftCharacterImage.sprite = line.characterSprites[0];
             rightCharacterImage.sprite = line.characterSprites[1];
 
-            // 말하는 캐릭터는 선명하게, 아닌 쪽은 반투명하게 표시
-            leftCharacterImage.color = (line.speakingCharacterName == leftName) ? Color.white : new Color(1f, 1f, 1f, 0.5f);
-            rightCharacterImage.color = (line.speakingCharacterName == rightName) ? Color.white : new Color(1f, 1f, 1f, 0.5f);
+            string leftName = line.characterNames[0].Trim();
+            string rightName = line.characterNames[1].Trim();
 
-            leftCharacterImage.gameObject.SetActive(true);
-            rightCharacterImage.gameObject.SetActive(true);
-        }
-        // 캐릭터가 1명 등장하는 경우
-        else if (line.characterNames.Count == 1)
-        {
-            nameText.text = line.characterNames[0];
-            centerCharacterImage.sprite = line.characterSprites[0];
-            centerCharacterImage.color = Color.white;
-            centerCharacterImage.gameObject.SetActive(true);
-        }
-    }
-
-    // 선택지 표시 함수 (선택 시 다음 인덱스로 이동)
-    void ShowChoices(List<string> choices, List<int> nextIndexes)
-    {
-        choicePanel.SetActive(true); // 선택지 패널 열기
-
-        for (int i = 0; i < choiceButtons.Count; i++)
-        {
-            if (i < choices.Count)
+            if (speaker.Equals(leftName))
             {
-                choiceButtons[i].gameObject.SetActive(true);
-                choiceTexts[i].text = choices[i];
-
-                int nextIndex = nextIndexes[i];
-                string selectedText = choices[i];
-
-                // 플레이어 닉네임 불러오기
-                string playerName = PlayerPrefs.GetString("PlayerName", "플레이어");
-
-                choiceButtons[i].onClick.RemoveAllListeners();
-                choiceButtons[i].onClick.AddListener(() =>
-                {
-                    // 선택된 텍스트 출력 (선택 효과)
-                    dialogueText.text = selectedText;
-                    nameText.text = playerName;
-
-                    currentIndex = nextIndex;
-
-                    // 잠깐 보여준 뒤 다음 대사 출력
-                    StartCoroutine(DelayedShowDialogue(0.8f));
-                    choicePanel.SetActive(false);
-                });
+                leftCharacterImage.color = Color.white;
+                rightCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+            }
+            else if (speaker.Equals(rightName))
+            {
+                leftCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+                rightCharacterImage.color = Color.white;
             }
             else
             {
-                // 사용하지 않는 버튼은 숨기기
-                choiceButtons[i].gameObject.SetActive(false);
+                leftCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
+                rightCharacterImage.color = new Color(0.7f, 0.7f, 0.7f);
             }
+        }
+
+        if (line.choices != null && line.choices.Count > 0 && line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == line.choices.Count)
+        {
+            ShowChoices(line.choices, line.nextDialogueIndexes);
+        }
+        else if (line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == 1)
+        {
+            nextButton.onClick.RemoveAllListeners();
+            nextButton.onClick.AddListener(() =>
+            {
+                currentIndex = line.nextDialogueIndexes[0];
+                ShowDialogue(currentIndex);
+            });
+
+            choicePanel.SetActive(false);
+        }
+        else
+        {
+            choicePanel.SetActive(false);
+
+            // ✅ 마지막 대사에서 Next 버튼 리스너를 다시 연결
+            nextButton.onClick.RemoveAllListeners();
+            nextButton.onClick.AddListener(ShowNextDialogue);
         }
     }
 
-    // 딜레이 후 다음 대사 출력
-    IEnumerator DelayedShowDialogue(float delay)
+    void ShowChoices(List<string> choices, List<int> nextIndexes)
     {
-        yield return new WaitForSeconds(delay);
-        ShowDialogue(currentIndex);
+        if (choiceLayoutGroup != null)
+        {
+            switch (choices.Count)
+            {
+                case 2: choiceLayoutGroup.spacing = 60f; break;
+                case 3: choiceLayoutGroup.spacing = 45f; break;
+                case 4: choiceLayoutGroup.spacing = 25f; break;
+                default: choiceLayoutGroup.spacing = 30f; break;
+            }
+        }
+
+        choicePanel.SetActive(true);
+
+        for (int i = 0; i < choiceButtons.Count; i++)
+        {
+            choiceButtons[i].onClick.RemoveAllListeners();
+            choiceButtons[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < choices.Count && i < choiceButtons.Count; i++)
+        {
+            var button = choiceButtons[i];
+            var text = choiceTexts[i];
+
+            int capturedIndex = nextIndexes[i];
+
+            button.gameObject.SetActive(true);
+            text.text = choices[i];
+
+            button.onClick.AddListener(() =>
+            {
+                Debug.Log($"[선택지 클릭] 이동 인덱스: {capturedIndex}");
+                choicePanel.SetActive(false);
+                currentIndex = capturedIndex;
+                ShowDialogue(currentIndex);
+            });
+        }
     }
 
-    // 다음 대사로 이동
     public void ShowNextDialogue()
     {
-        if (currentIndex < dialogueData.lines.Count - 1)
+        if (currentDialogueData == null || currentDialogueData.lines == null)
+        {
+            Debug.LogWarning("DialogueData가 없어서 진행할 수 없습니다.");
+            return;
+        }
+
+        if (currentIndex < currentDialogueData.lines.Count - 1)
         {
             currentIndex++;
             ShowDialogue(currentIndex);
         }
         else
         {
-            // 마지막 대사일 경우 → 다음 씬으로 전환
-            if (!string.IsNullOrEmpty(nextSceneName))
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndex = currentSceneIndex + 1;
+
+            Debug.Log($"▶ 씬 {currentSceneIndex} 종료 → 다음 씬 {nextSceneIndex}으로 이동");
+
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
-                SceneManager.LoadScene(nextSceneName);
+                SceneManager.LoadScene(nextSceneIndex);
+            }
+            else
+            {
+                Debug.LogWarning("▶ 다음 씬 없음: 마지막 씬입니다.");
             }
         }
+
     }
 
-    // 이전 대사로 이동
+
+
     public void ShowPreviousDialogue()
     {
         if (currentIndex > 0)
@@ -168,13 +234,5 @@ public class DialogueManager : MonoBehaviour
             currentIndex--;
             ShowDialogue(currentIndex);
         }
-    }
-
-    // 저장 함수 (팝업에서 '예' 버튼과 연결해 사용)
-    public void SaveGame()
-    {
-        PlayerPrefs.SetInt("ContinueIndex", currentIndex);
-        PlayerPrefs.Save();
-        Debug.Log("게임 저장됨. 인덱스: " + currentIndex);
     }
 }

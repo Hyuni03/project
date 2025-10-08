@@ -88,4 +88,3 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 }
-
