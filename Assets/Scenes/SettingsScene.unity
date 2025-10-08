@@ -1030,7 +1030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 110, y: 0}
   m_SizeDelta: {x: 800, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &320514977
@@ -1805,7 +1805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &517235721
@@ -2082,7 +2082,8 @@ MonoBehaviour:
   defaultBgmVolume: 0.5
   defaultSfxVolume: 0.5
   bgmSource: {fileID: 0}
-  sfxSource: {fileID: 0}
+  sfxSource: {fileID: 768809736}
+  buttonClickClip: {fileID: 8300000, guid: 9d0113dd16699ce4ea3c58dd422fdc1f, type: 3}
 --- !u!4 &677422346
 Transform:
   m_ObjectHideFlags: 0
@@ -2753,7 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26dbf308c88e8bd4480da08186253896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 9d0113dd16699ce4ea3c58dd422fdc1f, type: 3}
   volume: 0.5
 --- !u!82 &768809736
 AudioSource:
@@ -3111,7 +3112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 400, y: 0}
   m_SizeDelta: {x: 100, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837929195
@@ -4787,10 +4788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc6071c2a2d5cf4fb033878ac74914c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitPopup: {fileID: 2020967379}
-  savePopup: {fileID: 0}
-  messagePopup: {fileID: 0}
-  messageText: {fileID: 0}
 --- !u!4 &1353887222
 Transform:
   m_ObjectHideFlags: 0
@@ -5299,7 +5296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1572912109
@@ -5644,6 +5641,7 @@ MonoBehaviour:
   defaultSfxVolume: 0.5
   bgmSource: {fileID: 0}
   sfxSource: {fileID: 0}
+  buttonClickClip: {fileID: 0}
 --- !u!1 &1740849180
 GameObject:
   m_ObjectHideFlags: 0

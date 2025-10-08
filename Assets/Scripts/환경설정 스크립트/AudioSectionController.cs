@@ -16,6 +16,9 @@ public class AudioSectionController : MonoBehaviour
     public AudioSource bgmSource;          // 실제로 재생할 BGM 소스 (BGMPlayer에 붙은 AudioSource)
     public AudioSource sfxSource;          // 효과음을 재생할 AudioSource (UI 클릭 등)
 
+    [Header("효과음 클립")]
+    public AudioClip buttonClickClip;      // 버튼 클릭 효과음 클립
+
     private bool isOpen = false;           // 콘텐츠 열림 상태
 
     private const string PREF_BGM = "BgmVolume";
@@ -23,7 +26,7 @@ public class AudioSectionController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("AudioSectionController.Start() 호출됨");
+        Debug.Log("🎧 AudioSectionController.Start() 호출됨");
 
         // ✅ BGM 소스 연결
         if (bgmSource == null)
@@ -31,11 +34,11 @@ public class AudioSectionController : MonoBehaviour
             if (BGMPlayer.Instance != null)
             {
                 bgmSource = BGMPlayer.Instance.audioSource;
-                Debug.Log("bgmSource 연결 성공");
+                Debug.Log("✅ bgmSource 연결 성공");
             }
             else
             {
-                Debug.LogWarning("BGMPlayer.Instance가 null입니다");
+                Debug.LogWarning("❌ BGMPlayer.Instance가 null입니다");
             }
         }
 
@@ -53,6 +56,9 @@ public class AudioSectionController : MonoBehaviour
         // ✅ 초기 볼륨 적용
         SetBgmVolume(savedBgmVolume);
         SetSfxVolume(savedSfxVolume);
+
+        // ✅ 모든 버튼에 효과음 자동 적용
+        AddSfxToAllButtons();
     }
 
     // "오디오 설정" 버튼 클릭 시 콘텐츠 열기/닫기
@@ -60,6 +66,9 @@ public class AudioSectionController : MonoBehaviour
     {
         isOpen = !isOpen;
         Content2.SetActive(isOpen);
+
+        // 설정창 열기/닫기에도 효과음 재생
+        PlayClickSound(buttonClickClip);
     }
 
     // BGM 볼륨 슬라이더 변경 시 호출
@@ -89,6 +98,10 @@ public class AudioSectionController : MonoBehaviour
         {
             sfxSource.PlayOneShot(clip); // 효과음 1회 재생
         }
+        else
+        {
+            Debug.LogWarning("⚠️ sfxSource 또는 clip이 비어 있음");
+        }
     }
 
     // 기본값 복원 버튼 클릭 시
@@ -103,6 +116,24 @@ public class AudioSectionController : MonoBehaviour
         PlayerPrefs.DeleteKey(PREF_BGM);
         PlayerPrefs.DeleteKey(PREF_SFX);
 
-        Debug.Log("오디오 설정 → 기본값으로 복원됨");
+        PlayClickSound(buttonClickClip); // 복원 버튼에도 클릭 사운드 재생
+
+        Debug.Log("🔄 오디오 설정 → 기본값으로 복원됨");
+    }
+
+    // ✅ 모든 버튼에 자동으로 클릭 사운드 등록
+    private void AddSfxToAllButtons()
+    {
+        Button[] buttons = FindObjectsOfType<Button>();
+
+        foreach (Button btn in buttons)
+        {
+            btn.onClick.AddListener(() =>
+            {
+                PlayClickSound(buttonClickClip);
+            });
+        }
+
+        Debug.Log($"✅ {buttons.Length}개의 버튼에 클릭 사운드 자동 등록 완료");
     }
 }
