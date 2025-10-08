@@ -44,16 +44,11 @@ public class DialogueManager : MonoBehaviour
 
         if (autoStartOnSceneLoad && dialogueData != null)
         {
-            StartDialogue(dialogueData, true); // 자동 시작 시 초기화 O
+            StartDialogue(dialogueData, true);
         }
     }
 
-    public void StartDialogue(DialogueData data)
-    {
-        StartDialogue(data, true);
-    }
-
-    public void StartDialogue(DialogueData data, bool resetIndex)
+    public void StartDialogue(DialogueData data, bool resetIndex = true)
     {
         Debug.Log("▶ StartDialogue() 호출됨");
 
@@ -70,8 +65,17 @@ public class DialogueManager : MonoBehaviour
 
     void ShowDialogue(int index)
     {
-        if (currentDialogueData == null || currentDialogueData.lines.Count == 0)
+        if (currentDialogueData == null || currentDialogueData.lines == null || currentDialogueData.lines.Count == 0)
+        {
+            Debug.LogWarning("⚠️ DialogueData가 비어있습니다.");
             return;
+        }
+
+        if (index < 0 || index >= currentDialogueData.lines.Count)
+        {
+            Debug.LogWarning($"⚠ 잘못된 대사 인덱스 접근: {index}");
+            return;
+        }
 
         DialogueLine line = currentDialogueData.lines[index];
 
@@ -81,10 +85,12 @@ public class DialogueManager : MonoBehaviour
         if (line.backgroundSprite != null)
             backgroundImage.sprite = line.backgroundSprite;
 
+        // 캐릭터 이미지 초기화
         leftCharacterImage.gameObject.SetActive(false);
         rightCharacterImage.gameObject.SetActive(false);
         centerCharacterImage.gameObject.SetActive(false);
 
+        // 화자 처리
         string speaker = string.IsNullOrEmpty(line.speakerName) ? previousSpeaker : line.speakerName;
         speaker = speaker.Trim().Replace("플레이어", playerName);
         previousSpeaker = speaker;
@@ -92,12 +98,11 @@ public class DialogueManager : MonoBehaviour
         nameText.enabled = true;
         nameText.text = speaker;
 
+        // 캐릭터 이미지 표시
         if (line.characterNames.Count == 1)
         {
             centerCharacterImage.gameObject.SetActive(true);
             centerCharacterImage.sprite = line.characterSprites[0];
-            leftCharacterImage.color = new Color(1, 1, 1, 0);
-            rightCharacterImage.color = new Color(1, 1, 1, 0);
         }
         else if (line.characterNames.Count == 2)
         {
@@ -127,26 +132,32 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        // 선택지 처리
         if (line.choices != null && line.choices.Count > 0 && line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == line.choices.Count)
         {
             ShowChoices(line.choices, line.nextDialogueIndexes);
         }
         else if (line.nextDialogueIndexes != null && line.nextDialogueIndexes.Count == 1)
         {
+            choicePanel.SetActive(false);
             nextButton.onClick.RemoveAllListeners();
             nextButton.onClick.AddListener(() =>
             {
-                currentIndex = line.nextDialogueIndexes[0];
-                ShowDialogue(currentIndex);
+                int nextIndex = line.nextDialogueIndexes[0];
+                if (nextIndex >= 0 && nextIndex < currentDialogueData.lines.Count)
+                {
+                    currentIndex = nextIndex;
+                    ShowDialogue(currentIndex);
+                }
+                else
+                {
+                    Debug.LogWarning($"⚠️ 잘못된 nextDialogueIndex 접근: {nextIndex}");
+                }
             });
-
-            choicePanel.SetActive(false);
         }
         else
         {
             choicePanel.SetActive(false);
-
-            // ✅ 마지막 대사에서 Next 버튼 리스너를 다시 연결
             nextButton.onClick.RemoveAllListeners();
             nextButton.onClick.AddListener(ShowNextDialogue);
         }
@@ -177,7 +188,6 @@ public class DialogueManager : MonoBehaviour
         {
             var button = choiceButtons[i];
             var text = choiceTexts[i];
-
             int capturedIndex = nextIndexes[i];
 
             button.gameObject.SetActive(true);
@@ -185,10 +195,17 @@ public class DialogueManager : MonoBehaviour
 
             button.onClick.AddListener(() =>
             {
-                Debug.Log($"[선택지 클릭] 이동 인덱스: {capturedIndex}");
-                choicePanel.SetActive(false);
-                currentIndex = capturedIndex;
-                ShowDialogue(currentIndex);
+                if (capturedIndex >= 0 && capturedIndex < currentDialogueData.lines.Count)
+                {
+                    Debug.Log($"[선택지 클릭] 이동 인덱스: {capturedIndex}");
+                    choicePanel.SetActive(false);
+                    currentIndex = capturedIndex;
+                    ShowDialogue(currentIndex);
+                }
+                else
+                {
+                    Debug.LogWarning($"⚠️ 잘못된 nextDialogueIndex 클릭: {capturedIndex}");
+                }
             });
         }
     }
@@ -201,6 +218,12 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if (currentIndex < 0 || currentIndex >= currentDialogueData.lines.Count)
+        {
+            Debug.LogWarning($"잘못된 인덱스 접근 시도: {currentIndex}");
+            return;
+        }
+
         if (currentIndex < currentDialogueData.lines.Count - 1)
         {
             currentIndex++;
@@ -208,13 +231,21 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            string currentSceneName = SceneManager.GetActiveScene().name;
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             int nextSceneIndex = currentSceneIndex + 1;
 
-            Debug.Log($"▶ 씬 {currentSceneIndex} 종료 → 다음 씬 {nextSceneIndex}으로 이동");
+            Debug.Log($"▶ 씬 {currentSceneName} 종료 → 다음 씬 처리");
 
-            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            // Episode4Scene이면 MainScene으로 이동
+            if (currentSceneName == "Episode4Scene")
             {
+                Debug.Log("▶ Episode4Scene 마지막 대사 → MainScene으로 이동");
+                SceneManager.LoadScene("MainScene");
+            }
+            else if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                currentIndex = 0; // 다음 씬 시작 시 인덱스 초기화
                 SceneManager.LoadScene(nextSceneIndex);
             }
             else
@@ -222,10 +253,7 @@ public class DialogueManager : MonoBehaviour
                 Debug.LogWarning("▶ 다음 씬 없음: 마지막 씬입니다.");
             }
         }
-
     }
-
-
 
     public void ShowPreviousDialogue()
     {

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485c7dc5e3ca9cd4893d5ce90ae702f8, type: 3}
+  m_Name: Episode Dia 5
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: 
+    dialogueText: "\uC5B4\uB5A4 \uD788\uB85C\uC778\uC744 \uC120\uD0DD\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?"
+    characterNames: []
+    characterSprites: []
+    backgroundSprite: {fileID: 21300000, guid: 781f3be11c8ff744290f6ec94992acbe, type: 3}
+    choices:
+    - ' '
+    nextDialogueIndexes: 01000000
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "\uB098\uB97C \uC120\uD0DD\uD574\uC8FC\uB294\uAC70\uC57C?"
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: 1e0b75b1c47f10c448fdb8c5149a558c, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 91de3e18f6c1f864ba0ac956e766c2b3, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 1

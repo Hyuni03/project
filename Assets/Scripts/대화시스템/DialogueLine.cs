@@ -13,6 +13,6 @@ public class DialogueLine
     public List<string> choices;
     public List<int> nextDialogueIndexes;
 
-    public bool isFinalLine; // ✅ 마지막 줄 여부 직접 표시
+    public bool isFinalLine; // 마지막 줄 여부 직접 표시
 }
 

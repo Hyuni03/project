@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485c7dc5e3ca9cd4893d5ce90ae702f8, type: 3}
+  m_Name: Episode Dia 3
+  m_EditorClassIdentifier: 
+  lines:
+  - speakerName: 
+    dialogueText: "(\uBBFC\uC544\uC640 \uC8FC\uC778\uACF5\uC774 \uB098\uB780\uD788
+      \uBC24\uBC14\uB2E4\uB97C \uAC77\uACE0 \uC788\uB2E4.)"
+    characterNames: []
+    characterSprites: []
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "(\uC9C4\uC9DC \uC774\uC0C1\uD55C \uC560\uC57C. \uAE30\uC5B5\uB3C4
+      \uC5C6\uACE0, \uB9D0\uB3C4 \uC774\uC0C1\uD55C\uB370... \uC660\uC9C0 \uACC4\uC18D
+      \uB208\uC774 \uAC00.)"
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "\uB108, \uBC14\uB2E4 \uC88B\uC544\uD574?"
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
+    dialogueText: "\uC88B\uC544\uD558\uC9C0. \uC774\uB807\uAC8C \uBC24\uBC14\uB2E4\uB294
+      \uB610 \uC624\uB79C\uB9CC\uC774\uB124. \uB108\uB294?"
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "\uB098? \uBCC4\uB85C \uC548 \uC88B\uC544\uD588\uB294\uB370, \uC9C0\uAE08\uC740
+      \uB610 \uB2E4\uB974\uB124. \uB108\uB791 \uAC19\uC774 \uC788\uC73C\uB2C8\uAE4C."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 1
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "\uB098? \uBCC4\uB85C \uC548 \uC88B\uC544\uD588\uB294\uB370, \uC9C0\uAE08\uC740
+      \uB610 \uB2E4\uB974\uB124. \uB108\uB791 \uAC19\uC774 \uC788\uC73C\uB2C8\uAE4C."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices:
+    - "\uBBFC\uC544 \uB124 \uB355\uBD84\uC5D0 \uC774\uB7F0 \uAE30\uBD84\uC744 \uB2E4\uC2DC
+      \uB290\uB07C\uB124."
+    - "\uC774\uB807\uAC8C \uAC19\uC774 \uAC77\uB294\uAC70, \uB098\uC058\uC9C4 \uC54A\uB124."
+    - "\uADFC\uB370 \uC774\uC81C \uCD94\uC6CC\uC11C \uB4E4\uC5B4\uAC00\uACE0\uC2F6\uAE34\uD558\uB2E4."
+    nextDialogueIndexes: 06000000080000000a000000
+    isFinalLine: 0
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
+    dialogueText: "\uBBFC\uC544 \uB124 \uB355\uBD84\uC5D0 \uC774\uB7F0 \uAE30\uBD84\uC744
+      \uB2E4\uC2DC \uB290\uB07C\uB124."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "(\uB208\uC744 \uD53C\uD558\uBA70) \uC9C4\uC9DC... \uADF8\uB807\uAC8C
+      \uB9D0\uD558\uBA74.. \uB098, \uC774\uC0C1\uD55C \uC0DD\uAC01 \uB4E4\uB2E8 \uB9D0\uC774\uC57C."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 1
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
+    dialogueText: "\uC774\uB807\uAC8C \uAC19\uC774 \uAC77\uB294\uAC70, \uB098\uC058\uC9C4
+      \uC54A\uB124."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "(\uAC00\uBCCD\uAC8C \uC6C3\uC73C\uBA70) \uB098\uC058\uC9C0 \uC54A\uB2E4\uB2C8...
+      \uD3C9\uC18C\uBCF4\uB2E4 \uC5C4\uCCAD \uC88B\uC740 \uD3C9\uAC00\uB124?"
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 1
+  - speakerName: "\uD50C\uB808\uC774\uC5B4"
+    dialogueText: "\uADFC\uB370 \uC774\uC81C \uCD94\uC6CC\uC11C \uB4E4\uC5B4\uAC00\uACE0\uC2F6\uAE34\uD558\uB2E4."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 0
+  - speakerName: "\uBBFC\uC544"
+    dialogueText: "...\uB410\uB2E4. \uADF8\uB7FC \uB098 \uD63C\uC790 \uAC78\uC744\uAC8C.
+      \uBA3C\uC800 \uB4E4\uC5B4\uAC00."
+    characterNames:
+    - "\uBBFC\uC544"
+    characterSprites:
+    - {fileID: 21300000, guid: bc6709d4236e59f428cf404ad9178901, type: 3}
+    backgroundSprite: {fileID: 21300000, guid: 7f515dbb70054cb4f9b355a1a6005896, type: 3}
+    choices: []
+    nextDialogueIndexes: 
+    isFinalLine: 1

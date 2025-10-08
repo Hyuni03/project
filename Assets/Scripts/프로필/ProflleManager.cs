@@ -85,16 +85,16 @@ public class ProfileManager : MonoBehaviour
 
         switch (data.heroineName)
         {
-            case "Heroine1":
+            case "민아":
                 DetailHeroine1?.SetActive(true);
                 break;
-            case "Heroine2":
+            case "유이":
                 DetailHeroine2?.SetActive(true);
                 break;
-            case "Heroine3":
+            case "소연":
                 DetailHeroine3?.SetActive(true);
                 break;
-            case "Heroine4":
+            case "은채":
                 DetailHeroine4?.SetActive(true);
                 break;
             default:

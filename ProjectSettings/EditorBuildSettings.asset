@@ -12,6 +12,21 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScene.unity
     guid: 224539e572db61a41929eb3deff1c671
   - enabled: 1
+    path: Assets/Scenes/Prolog/PrologueTemplate.unity
+    guid: ba28ab864bb9aa044a1a3950ac38fd24
+  - enabled: 1
+    path: Assets/Scenes/Prolog/Episode1Scene.unity
+    guid: df8ff875439792640b78cbf2071c57f1
+  - enabled: 1
+    path: Assets/Scenes/Prolog/Episode2Scene.unity
+    guid: 73b1cba7b29d7ea4cb68389678b49931
+  - enabled: 1
+    path: Assets/Scenes/Prolog/Episode3Scene.unity
+    guid: ab8d2e302fc412240b18ae10db9ed7ea
+  - enabled: 1
+    path: Assets/Scenes/Prolog/Episode4Scene.unity
+    guid: f53cbb5ec017a0045b41d868681e0b35
+  - enabled: 1
     path: Assets/Scenes/ContinueGameScene.unity
     guid: 7345234c553394c47a61c30a63b709b9
   - enabled: 1
@@ -20,10 +35,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SettingsScene.unity
     guid: 2a7533a8f4acf7b42bd2a182d9a2aebc
-  - enabled: 1
-    path: Assets/Scenes/Prolog/PrologueTemplate.unity
-    guid: ba28ab864bb9aa044a1a3950ac38fd24
-  - enabled: 1
-    path: Assets/Scenes/Prolog/Episode1Scene.unity
-    guid: f53cbb5ec017a0045b41d868681e0b35
   m_configObjects: {}
