@@ -3252,7 +3252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c1e38091332b0428d4a5d761a25348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: c45103b1c37a5dd48b984ab299d23fa7, type: 2}
+  dialogueData: {fileID: 11400000, guid: 0334e21fae3dfb643b7e05f115c0addb, type: 2}
   nameText: {fileID: 218571512}
   dialogueText: {fileID: 1154256781}
   backgroundImage: {fileID: 1253701223}
